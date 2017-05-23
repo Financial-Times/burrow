@@ -8,4 +8,3 @@ cat /config/burrow.cfg
 
 ./Burrow --config /config/burrow.cfg
 
-cat /burrow.out
