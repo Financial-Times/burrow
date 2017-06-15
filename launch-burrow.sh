@@ -7,5 +7,3 @@ sed -i "s KAFKA_PORT $KAFKA_PORT " /config/burrow.cfg
 cat /config/burrow.cfg
 
 ./Burrow --config /config/burrow.cfg
-
-cat /burrow.out
