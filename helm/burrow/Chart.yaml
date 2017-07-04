@@ -1,4 +1,4 @@
 apiVersion: v1
-description: A Helm chart for Kubernetes
+description: burrow Helm chart for Kubernetes
 name: burrow
-version: 0.1.0
+version: 0.0.0

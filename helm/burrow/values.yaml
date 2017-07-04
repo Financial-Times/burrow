@@ -7,7 +7,6 @@ service:
 replicaCount: 1
 image:
   repository: coco/burrow
-  version: "" # should be set explicitly at installation
   pullPolicy: IfNotPresent
 resources:
   limits:
