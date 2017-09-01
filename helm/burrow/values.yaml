@@ -1,0 +1,15 @@
+# Default values for burrow.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+service:
+  name: "burrow" # The name of the service, should be defined in the specific app-configs folder.
+  hasHealthcheck: "true"
+replicaCount: 1
+image:
+  repository: coco/burrow
+  pullPolicy: IfNotPresent
+resources:
+  limits:
+    memory: 256Mi
+
+
