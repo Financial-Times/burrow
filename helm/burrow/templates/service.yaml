@@ -9,6 +9,16 @@ metadata:
     visualize: "true" 
     hasHealthcheck: "{{ .Values.service.hasHealthcheck }}" 
 spec:
+  affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ .Values.service.name }}
+              topologyKey: "kubernetes.io/hostname"
   ports: 
     - port: 8080 
 #      name: # The name of this port within the service. Optional if only one port is defined on this service
