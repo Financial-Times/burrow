@@ -11,7 +11,7 @@ image:
 resources:
   limits:
     memory: 128Mi
-  requires:
+  requests:
     memory: 64Mi 
 
 
