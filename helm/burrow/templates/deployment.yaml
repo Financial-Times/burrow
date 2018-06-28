@@ -20,7 +20,7 @@ spec:
     spec:
       containers: 
       - name: {{ .Values.service.name }} 
-        image: "{{ .Values.image }}"
+        image: {{ .Values.image.name }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         volumeMounts:
