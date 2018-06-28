@@ -1,0 +1,44 @@
+kind: ConfigMap
+metadata:
+  name: burrow-config
+apiVersion: v1
+data:
+  burrow.cfg: |-
+    [general]
+    logconfig=/config/logging.cfg
+
+    [zookeeper]
+    hostname={{ .Values.zk.host }}
+    port={{ .Values.zk.port }}
+
+    [kafka "local"]
+    broker={{ .Values.kafka.host }}
+    broker-port={{ .Values.kafka.port }}
+    zookeeper={{ .Values.zk.host }}
+    zookeeper-port={{ .Values.zk.port }}
+    zookeeper-path=/
+    zookeeper-offsets=true
+
+    [tickers]
+    broker-offsets=60
+
+    [lagcheck]
+    intervals=10
+    expire-group=604800
+    min-distance=1
+    zookeeper-interval=60
+    zk-group-refresh=300
+
+    [httpserver]
+    server=on
+    port=8080
+
+  logging.cfg: |-
+    <seelog minlevel="info">
+      <outputs formatid="main">
+        <console/>
+      </outputs>
+      <formats>
+        <format id="main" format="%Date(2006-01-02 15:04:05) [%LEVEL] %Msg%n"/>
+      </formats>
+    </seelog>

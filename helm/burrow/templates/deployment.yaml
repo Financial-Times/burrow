@@ -20,29 +20,12 @@ spec:
     spec:
       containers: 
       - name: {{ .Values.service.name }} 
-        image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
+        image: "{{ .Values.image }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env: 
-        - name: ZOOKEEPER_HOST 
-          valueFrom: 
-            configMapKeyRef: 
-              name: global-config 
-              key: zookeeper.host
-        - name: ZOOKEEPER_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: global-config
-              key: zookeeper.port
-        - name: KAFKA_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: global-config
-              key: kafka.host
-        - name: KAFKA_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: global-config
-              key: kafka.port
+        env:
+        volumeMounts:
+        - name: configmap
+          mountPath: /etc/burrow
         ports: 
         - containerPort: 8080 
         livenessProbe: 
@@ -51,4 +34,7 @@ spec:
           initialDelaySeconds: 5
         resources: 
 {{ toYaml .Values.resources | indent 12 }}
-
+      volumes:
+      - name: configmap
+        configMap:
+          name: burrow-config

@@ -6,12 +6,16 @@ service:
   hasHealthcheck: "false"
 replicaCount: 1
 image:
-  repository: coco/burrow
+  repository: toddpalino/burrow:1.1.0
   pullPolicy: IfNotPresent
 resources:
   limits:
     memory: 128Mi
   requests:
     memory: 64Mi 
-
-
+kafka:
+  host: "kafka-0.kafka.default.svc.cluster.local"
+  port: "9092"
+zk:
+  host: "kafka-zookeeper"
+  port: "2181"
