@@ -4,39 +4,36 @@ metadata:
 apiVersion: v1
 data:
   burrow.toml: |-
-    [zookeeper]
-    servers=[ "{{ .Values.zk.host }}:{{ .Values.zk.port }}" ]
-    root-part="/burrow"
-
-    [cluster.local]
-    class-name="kafka"
-    servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
-    topic-refresh=120
-    offset-refresh=30
-
-    [tickers]
-    broker-offsets=60
-
-    [storage.default]
-    class-name="inmemory"
-    intervals=10
-    expire-group=604800
-    min-distance=1
-    zookeeper-interval=60
-    zk-group-refresh=300
-
-    [httpserver.default]
-    address=":8080"
-
     [logging]
     level="info"
+
+    [zookeeper]
+    servers=[ "{{ .Values.zk.host }}:{{ .Values.zk.port }}" ]
+    timeout=10
+    root-part="/burrow"
 
     [client-profile.ft]
     client-id="burrow-ft"
     kafka-version="0.8.2"
+
+    [cluster.local]
+    class-name="kafka"
+    servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
+    client-profile=ft
+    topic-refresh=120
+    offset-refresh=30
 
     [consumer.local]
     class-name="kafka"
     cluster="local"
     servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
     client-profile="ft"
+
+    [httpserver.default]
+    address=":8080"
+
+    [storage.default]
+    class-name="inmemory"
+    intervals=10
+    expire-group=604800
+    min-distance=1
