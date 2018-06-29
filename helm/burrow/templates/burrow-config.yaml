@@ -5,21 +5,20 @@ apiVersion: v1
 data:
   burrow.toml: |-
     [zookeeper]
-    hostname={{ .Values.zk.host }}
-    port={{ .Values.zk.port }}
+    servers=[ "{{ .Values.zk.host }}:{{ .Values.zk.port }}" ]
+    root-part="/burrow"
 
-    [kafka "local"]
-    broker={{ .Values.kafka.host }}
-    broker-port={{ .Values.kafka.port }}
-    zookeeper={{ .Values.zk.host }}
-    zookeeper-port={{ .Values.zk.port }}
-    zookeeper-path=/
-    zookeeper-offsets=true
+    [cluster.local]
+    class-name="kafka"
+    servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
+    topic-refresh=120
+    offset-refresh=30
 
     [tickers]
     broker-offsets=60
 
-    [lagcheck]
+    [storage.default]
+    class-name="inmemory"
     intervals=10
     expire-group=604800
     min-distance=1
