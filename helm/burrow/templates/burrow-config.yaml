@@ -19,7 +19,7 @@ data:
     [cluster.local]
     class-name="kafka"
     servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
-    client-profile=ft
+    client-profile="ft"
     topic-refresh=120
     offset-refresh=30
 
