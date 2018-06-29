@@ -6,7 +6,7 @@ service:
   hasHealthcheck: "false"
 replicaCount: 1
 image:
-  name: toddpalino/burrow:1.1.0
+  repository: coco/burrow
   pullPolicy: IfNotPresent
 resources:
   limits:
