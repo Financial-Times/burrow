@@ -25,9 +25,8 @@ data:
     zookeeper-interval=60
     zk-group-refresh=300
 
-    [httpserver]
-    server=on
-    port=8080
+    [httpserver.default]
+    address=":8080"
 
     [logging]
     level="info"
