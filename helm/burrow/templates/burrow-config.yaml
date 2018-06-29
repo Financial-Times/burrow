@@ -29,6 +29,12 @@ data:
     servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
     client-profile="ft"
 
+    [consumer.local_zk]
+    class-name="kafka_zk"
+    cluster="local"
+    servers=[ "{{ .Values.zk.host }}:{{ .Values.zk.port }}" ]
+    zookeeper-timeout=30
+
     [httpserver.default]
     address=":8080"
 
