@@ -11,14 +11,11 @@ RUN cd $GOPATH/src/github.com/linkedin && \
     cd Burrow && \
     git checkout v1.1.0 && \
     dep ensure && \
-    go build -o /tmp/burrow . && \
-    cp docker-config/burrow.toml /tmp
+    go build -o /tmp/burrow .
 
 FROM iron/go
 MAINTAINER LinkedIn Burrow "https://github.com/linkedin/Burrow"
 
 WORKDIR /app
 COPY --from=0 /tmp/burrow /app/
-COPY --from=0 /tmp/burrow.toml /etc/burrow/
-
 CMD ["/app/burrow", "--config-dir", "/etc/burrow"]
