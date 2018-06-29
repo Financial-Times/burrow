@@ -1,4 +1,4 @@
-FROM golang:1.9-alpine as builder
+FROM golang:1.9-alpine
 
 ENV DEP_VERSION="0.3.2"
 RUN apk add --no-cache git curl && \
@@ -17,6 +17,6 @@ FROM iron/go
 MAINTAINER LinkedIn Burrow "https://github.com/linkedin/Burrow"
 
 WORKDIR /app
-COPY --from=builder /tmp/burrow /app/
+COPY --from=0 /tmp/burrow /app/
 
 CMD ["/app/burrow", "--config-dir", "/etc/burrow"]
