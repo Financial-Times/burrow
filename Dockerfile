@@ -12,7 +12,7 @@ RUN cd $GOPATH/src/github.com/linkedin && \
     git checkout v1.1.0 && \
     dep ensure && \
     go build -o /tmp/burrow . && \
-    cp /docker-config/burrow.toml /tmp
+    cp docker-config/burrow.toml /tmp
 
 FROM iron/go
 MAINTAINER LinkedIn Burrow "https://github.com/linkedin/Burrow"
