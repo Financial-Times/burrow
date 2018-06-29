@@ -12,22 +12,12 @@ data:
     timeout=10
     root-part="/burrow"
 
-    [client-profile.ft]
-    client-id="burrow-ft"
-    kafka-version="0.8.2"
-
     [cluster.local]
     class-name="kafka"
     servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
     client-profile="ft"
     topic-refresh=120
     offset-refresh=30
-
-    [consumer.local]
-    class-name="kafka"
-    cluster="local"
-    servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
-    client-profile="ft"
 
     [consumer.local_zk]
     class-name="kafka_zk"
