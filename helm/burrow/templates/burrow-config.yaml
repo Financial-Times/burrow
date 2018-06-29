@@ -30,3 +30,13 @@ data:
 
     [logging]
     level="info"
+
+    [client-profile.ft]
+    client-id="burrow-ft"
+    kafka-version="0.8.2"
+
+    [consumer.local]
+    class-name="kafka"
+    cluster="local"
+    servers=[ "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}" ]
+    client-profile="ft"
