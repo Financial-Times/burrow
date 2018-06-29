@@ -6,8 +6,10 @@ RUN apk add --no-cache git curl && \
     chmod +x $GOPATH/bin/dep && \
     mkdir -p $GOPATH/src/github.com/linkedin/Burrow
 
-ADD . $GOPATH/src/github.com/linkedin/Burrow/
-RUN cd $GOPATH/src/github.com/linkedin/Burrow && \
+RUN cd $GOPATH/src/github.com/linkedin && \
+    git clone https://github.com/linkedin/Burrow.git && \
+    cd Burrow && \
+    git checkout v1.1.0 && \
     dep ensure && \
     go build -o /tmp/burrow .
 
@@ -16,6 +18,5 @@ MAINTAINER LinkedIn Burrow "https://github.com/linkedin/Burrow"
 
 WORKDIR /app
 COPY --from=builder /tmp/burrow /app/
-ADD /docker-config/burrow.toml /etc/burrow/
 
 CMD ["/app/burrow", "--config-dir", "/etc/burrow"]
