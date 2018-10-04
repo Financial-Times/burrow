@@ -15,7 +15,7 @@ RUN apk update \
   && git checkout v0.1.1 \
   && /go/gpm install \
   && go install \
-  && mv $GOPATH/bin/Burrow / \
+  && mv $GOPATH/bin/Burrow /go \
   && apk del go git bzr \
   && rm -rf $GOPATH /var/cache/apk/* /gpm \
   && touch /burrow.out \
