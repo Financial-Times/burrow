@@ -1,4 +1,4 @@
-FROM golang:1.10-alpine
+FROM golang:1.12-alpine
 
 ADD config/burrow.cfg /config/burrow.cfg
 ADD config/logging.cfg /config/logging.cfg
