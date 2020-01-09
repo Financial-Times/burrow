@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.service.name }} 
@@ -23,26 +23,16 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env: 
-        - name: ZOOKEEPER_HOST 
+        - name: ZOOKEEPER_URL
           valueFrom: 
             configMapKeyRef: 
               name: global-config 
-              key: zookeeper.host
-        - name: ZOOKEEPER_PORT
+              key: zookeeper-msk.url
+        - name: KAFKA_URL
           valueFrom:
             configMapKeyRef:
               name: global-config
-              key: zookeeper.port
-        - name: KAFKA_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: global-config
-              key: kafka.host
-        - name: KAFKA_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: global-config
-              key: kafka.port
+              key: kafka-msk.url
         ports: 
         - containerPort: 8080 
         livenessProbe: 

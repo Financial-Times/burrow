@@ -1,0 +1,31 @@
+[logging]
+level="info"
+use-localtime=false
+
+[zookeeper]
+servers=[ ZOOKEEPER_URL ]
+
+[httpserver.default]
+address=":8080"
+
+[cluster.local]
+class-name="kafka"
+servers=[ KAFKA_URL ]
+topic-refresh=120
+offset-refresh=60
+client-profile="local"
+
+[client-profile.local]
+kafka-version="2.2.0"
+
+[consumer.local]
+class-name="kafka"
+cluster="local"
+servers=[ KAFKA_URL ]
+client-profile="local"
+
+[consumer.local_zk]
+class-name="kafka_zk"
+cluster="local"
+servers=[ ZOOKEEPER_URL ]
+zookeeper-timeout=60

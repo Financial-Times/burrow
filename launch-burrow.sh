@@ -1,9 +1,9 @@
 #!/bin/sh
-sed -i "s ZOOKEEPER_HOST $ZOOKEEPER_HOST " /config/burrow.cfg
-sed -i "s ZOOKEEPER_PORT $ZOOKEEPER_PORT " /config/burrow.cfg
-sed -i "s KAFKA_HOST $KAFKA_HOST " /config/burrow.cfg
-sed -i "s KAFKA_PORT $KAFKA_PORT " /config/burrow.cfg
+ZOOKEEPER_URL=\\\"$(echo $ZOOKEEPER_URL | sed 's/,/\\\", \\\"/g')\\\"
+sed -i -e "s/ZOOKEEPER_URL/$ZOOKEEPER_URL/" /config/burrow.toml
+KAFKA_URL=\"$(echo $KAFKA_URL | sed 's/,/", "/g')\"
+sed -i -e "s/KAFKA_URL/$KAFKA_URL/" /config/burrow.toml
 
-cat /config/burrow.cfg
+cat /config/burrow.toml
 
-./Burrow --config /config/burrow.cfg
+/Burrow --config-dir /config

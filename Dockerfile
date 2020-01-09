@@ -1,24 +1,21 @@
-FROM golang:1.10-alpine
+# stage 1: builder
+FROM golang:1.13-alpine as builder
 
-ADD config/burrow.cfg /config/burrow.cfg
-ADD config/logging.cfg /config/logging.cfg
-ADD launch-burrow.sh /launch-burrow.sh
+ENV PROJECT Burrow
+ENV LATEST_VERIFIED_COMMIT ce211532b6fe3b65018af748ac6ea9706889cea9
 
-RUN apk update \
-  && apk add git bash\
-  && wget https://raw.githubusercontent.com/pote/gpm/v1.4.0/bin/gpm && chmod +x gpm \
-  && export GOPATH=/gopath \
-  && mkdir -p $GOPATH/src/github.com/linkedin/ \
-  && cd $GOPATH/src/github.com/linkedin/ \
-  && git clone https://github.com/linkedin/Burrow.git \
-  && cd Burrow \
-  && git checkout v0.1.1 \
-  && /go/gpm install \
-  && go install \
-  && mv $GOPATH/bin/Burrow /go \
-  && apk del go git bzr \
-  && rm -rf $GOPATH /var/cache/apk/* /gpm \
-  && touch /burrow.out \
-  && ln -sf /proc/1/fd/1 /burrow.out
+WORKDIR /${PROJECT}
+
+# Use latest commit at the time of writing this
+RUN wget https://github.com/linkedin/Burrow/archive/${LATEST_VERIFIED_COMMIT}.tar.gz && \
+  tar -xzf ${LATEST_VERIFIED_COMMIT}.tar.gz --strip 1 && \
+  go build -o /artifacts/${PROJECT}
+
+# stage 2: runner
+FROM alpine:3.10
+
+COPY --from=builder /artifacts/* /
+COPY config/burrow.toml /config/
+COPY launch-burrow.sh /launch-burrow.sh
   
 CMD [ "/launch-burrow.sh" ]
