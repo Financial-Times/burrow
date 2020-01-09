@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    working_directory: /Burrow
+    docker:
+      - image: docker:18
+    steps:
+      - checkout
+      - setup_docker_engine
+      - run:
+          name: Build Dockerfile
+          command: docker build .
