@@ -1,5 +1,5 @@
 [logging]
-level="info"
+level="LOG_LEVEL"
 use-localtime=false
 
 [zookeeper]

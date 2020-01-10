@@ -1,5 +1,6 @@
 #!/bin/sh
-ZOOKEEPER_URL=\\\"$(echo $ZOOKEEPER_URL | sed 's/,/\\\", \\\"/g')\\\"
+sed -i -e "s/LOG_LEVEL/$LOG_LEVEL/" /config/burrow.toml
+ZOOKEEPER_URL=\"$(echo $ZOOKEEPER_URL | sed 's/,/", "/g')\"
 sed -i -e "s/ZOOKEEPER_URL/$ZOOKEEPER_URL/" /config/burrow.toml
 KAFKA_URL=\"$(echo $KAFKA_URL | sed 's/,/", "/g')\"
 sed -i -e "s/KAFKA_URL/$KAFKA_URL/" /config/burrow.toml

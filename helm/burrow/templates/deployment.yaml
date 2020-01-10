@@ -33,6 +33,8 @@ spec:
             configMapKeyRef:
               name: global-config
               key: kafka-msk.url
+        - name: LOG_LEVEL
+          value: "info"
         ports: 
         - containerPort: 8080 
         livenessProbe: 
