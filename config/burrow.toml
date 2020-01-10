@@ -23,9 +23,11 @@ class-name="kafka"
 cluster="local"
 servers=[ KAFKA_URL ]
 client-profile="local"
+group-blacklist="^burrow-local$"
 
 [consumer.local_zk]
 class-name="kafka_zk"
 cluster="local"
 servers=[ ZOOKEEPER_URL ]
 zookeeper-timeout=60
+group-blacklist="^burrow-local$"
