@@ -29,3 +29,8 @@ class-name="kafka_zk"
 cluster="local"
 servers=[ ZOOKEEPER_URL ]
 zookeeper-timeout=60
+
+[storage.default]
+class-name="inmemory"
+group-whitelist=".*"
+group-blacklist="burrow-local"
