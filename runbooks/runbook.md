@@ -107,10 +107,10 @@ To rotate credentials you need to login to a particular cluster and update varni
 
 Burrow doesn't have monitoring of its own but one can check the health of "kafka-lagcheck" which depends on it, e.g.:
 
-- Publishing-Prod-EU Publish Availability Monitor service health: https://upp-prod-publish-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
-- Publishing-Prod-US Publish Availability Monitor service health: https://upp-prod-publish-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
-- Delivery-Prod-EU Methode Article Mapper health: https://upp-prod-delivery-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
-- Delivery-Prod-US Methode Article Mapper health: https://upp-prod-delivery-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
+- Publishing EU Kafka lagcheck health: https://upp-prod-publish-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
+- Publishing US Kafka lagcheck health: https://upp-prod-publish-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
+- Delivery EU Kafka lagcheck health: https://upp-prod-delivery-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
+- Delivery US Kafka lagcheck health: https://upp-prod-delivery-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
 
 ## First Line Troubleshooting
 
