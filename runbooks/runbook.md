@@ -1,6 +1,14 @@
+<!--
+    Written in the format prescribed by https://github.com/Financial-Times/runbook.md.
+    Any future edits should abide by this format.
+-->
 # UPP - Burrow
 
 Burrow is a tool which allows viewing information about Kafka via REST API.
+
+## Code
+
+burrow
 
 ## Primary URL
 
@@ -14,28 +22,13 @@ Platinum
 
 Production
 
-## Delivered By
-
-content
-
-## Supported By
-
-content
-
-## Known About By
-
-- kalin.arsov
-- mihail.mihaylov
-- elitsa.pavlova
-- hristo.georgiev
-
 ## Host Platform
 
 AWS
 
 ## Architecture
 
-This service runs a Docker image based on a very old version of https://github.com/linkedin/Burrow .
+This service runs a Docker image based on a very old version of <https://github.com/linkedin/Burrow> .
 It connects to the UPP Kafka and Zookeeper services and provides a RESTful API for the "kafka-lagcheck" service to check Kafka consumer offsets.
 One can also use Burrow to check Kafka consumer and topic info, and delete consumer groups from Kafka.
 
@@ -47,10 +40,19 @@ No
 
 No
 
-## Dependencies
+<!-- Placeholder - remove HTML comment markers to activate
+## Can Download Personal Data
+Choose Yes or No
 
-- upp-kafka
-- upp-zookeeper
+...or delete this placeholder if not applicable to this system
+-->
+
+<!-- Placeholder - remove HTML comment markers to activate
+## Can Contact Individuals
+Choose Yes or No
+
+...or delete this placeholder if not applicable to this system
+-->
 
 ## Failover Architecture Type
 
@@ -69,10 +71,10 @@ FullyAutomated
 The service is deployed in both Publishing and Delivery clusters.
 
 The failover guide for the Delivery clusters is located here:
-https://github.com/Financial-Times/upp-docs/tree/master/failover-guides/delivery-cluster
+<https://github.com/Financial-Times/upp-docs/tree/master/failover-guides/delivery-cluster>
 
 The failover guide for the Publishing clusters is located here:
-https://github.com/Financial-Times/upp-docs/tree/master/failover-guides/publishing-cluster
+<https://github.com/Financial-Times/upp-docs/tree/master/failover-guides/publishing-cluster>
 
 ## Data Recovery Process Type
 
@@ -94,6 +96,14 @@ Manual
 
 It is safe to release the service without failover.
 
+<!-- Placeholder - remove HTML comment markers to activate
+## Heroku Pipeline Name
+Enter descriptive text satisfying the following:
+This is the name of the Heroku pipeline for this system. If you don't have a pipeline, this is the name of the app in Heroku. A pipeline is a group of Heroku apps that share the same codebase where each app in a pipeline represents the different stages in a continuous delivery workflow, i.e. staging, production.
+
+...or delete this placeholder if not applicable to this system
+-->
+
 ## Key Management Process Type
 
 Manual
@@ -107,18 +117,17 @@ To rotate credentials you need to login to a particular cluster and update varni
 
 Burrow doesn't have monitoring of its own but one can check the health of "kafka-lagcheck" which depends on it, e.g.:
 
-- Publishing EU Kafka lagcheck health: https://upp-prod-publish-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
-- Publishing US Kafka lagcheck health: https://upp-prod-publish-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
-- Delivery EU Kafka lagcheck health: https://upp-prod-delivery-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
-- Delivery US Kafka lagcheck health: https://upp-prod-delivery-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck
+*   Publishing EU Kafka lagcheck health: <https://upp-prod-publish-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck>
+*   Publishing US Kafka lagcheck health: <https://upp-prod-publish-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck>
+*   Delivery EU Kafka lagcheck health: <https://upp-prod-delivery-eu.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck>
+*   Delivery US Kafka lagcheck health: <https://upp-prod-delivery-us.upp.ft.com/__health/__pods-health?service-name=kafka-lagcheck>
 
 ## First Line Troubleshooting
 
-https://github.com/Financial-Times/upp-docs/tree/master/guides/ops/first-line-troubleshooting
+<https://github.com/Financial-Times/upp-docs/tree/master/guides/ops/first-line-troubleshooting>
 
 ## Second Line Troubleshooting
 
 Please refer to the GitHub repository README for troubleshooting information.
 
-Additionally you can check the official Burrow wiki page: https://github.com/linkedin/Burrow/wiki
-
+Additionally you can check the official Burrow wiki page: <https://github.com/linkedin/Burrow/wiki>
