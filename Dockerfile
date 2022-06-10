@@ -1,24 +1,12 @@
-FROM golang:1.10-alpine
+FROM coco/burrow:v3.0.4
 
-ADD config/burrow.cfg /config/burrow.cfg
-ADD config/logging.cfg /config/logging.cfg
-ADD launch-burrow.sh /launch-burrow.sh
+FROM alpine:3.16.0
 
-RUN apk update \
-  && apk add git bash\
-  && wget https://raw.githubusercontent.com/pote/gpm/v1.4.0/bin/gpm && chmod +x gpm \
-  && export GOPATH=/gopath \
-  && mkdir -p $GOPATH/src/github.com/linkedin/ \
-  && cd $GOPATH/src/github.com/linkedin/ \
-  && git clone https://github.com/linkedin/Burrow.git \
-  && cd Burrow \
-  && git checkout v0.1.1 \
-  && /go/gpm install \
-  && go install \
-  && mv $GOPATH/bin/Burrow /go \
-  && apk del go git bzr \
-  && rm -rf $GOPATH /var/cache/apk/* /gpm \
-  && touch /burrow.out \
-  && ln -sf /proc/1/fd/1 /burrow.out
-  
+WORKDIR /
+
+COPY --from=0 /go/Burrow /Burrow
+COPY --from=0 /launch-burrow.sh /launch-burrow.sh
+COPY --from=0 /config/burrow.cfg /config/burrow.cfg
+COPY --from=0 /config/logging.cfg /config/logging.cfg
+
 CMD [ "/launch-burrow.sh" ]
