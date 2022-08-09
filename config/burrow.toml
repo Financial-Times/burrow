@@ -12,6 +12,9 @@ client-profile="local"
 topic-refresh=200
 offset-refresh=50
 
+[client-profile.local]
+kafka-version="0.8.2"
+
 [consumer.local]
 class-name="kafka"
 cluster="local"
