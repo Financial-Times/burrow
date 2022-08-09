@@ -16,6 +16,18 @@ client-profile="burrow"
 topic-refresh=200
 offset-refresh=50
 
+[consumer.local]
+class-name="kafka"
+cluster="local"
+servers=[ "KAFKA_HOST:KAFKA_PORT" ]
+client-profile="local"
+
+[consumer.local_zk]
+class-name="kafka_zk"
+cluster="local"
+servers=[ "ZOOKEEPER_HOST:ZOOKEEPER_PORT" ]
+zookeeper-timeout=60
+
 [tickers]
 broker-offsets=60
 
