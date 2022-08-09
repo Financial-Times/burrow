@@ -1,18 +1,14 @@
-[general]
-stdout-logfile="burrow.out"
-
 [logging]
 filename="/config/logging.toml"
 level="info"
 
 [zookeeper]
 servers=[ "ZOOKEEPER_HOST:ZOOKEEPER_PORT" ]
-timeout=6
 
 [cluster.local]
 class-name="kafka"
 servers=[ "KAFKA_HOST:KAFKA_PORT" ]
-client-profile="burrow"
+client-profile="local"
 topic-refresh=200
 offset-refresh=50
 
@@ -38,6 +34,5 @@ min-distance=1
 zookeeper-interval=60
 zk-group-refresh=300
 
-[httpserver]
-server="on"
-port=8080
+[httpserver.default]
+address=":8080"
