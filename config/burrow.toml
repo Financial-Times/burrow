@@ -1,0 +1,41 @@
+[logging]
+filename="/config/logging.toml"
+level="info"
+
+[zookeeper]
+servers=[ "ZOOKEEPER_HOST:ZOOKEEPER_PORT" ]
+
+[cluster.local]
+class-name="kafka"
+servers=[ "KAFKA_HOST:KAFKA_PORT" ]
+client-profile="local"
+topic-refresh=200
+offset-refresh=50
+
+[client-profile.local]
+kafka-version="0.8.2"
+
+[consumer.local]
+class-name="kafka"
+cluster="local"
+servers=[ "KAFKA_HOST:KAFKA_PORT" ]
+client-profile="local"
+
+[consumer.local_zk]
+class-name="kafka_zk"
+cluster="local"
+servers=[ "ZOOKEEPER_HOST:ZOOKEEPER_PORT" ]
+zookeeper-timeout=60
+
+[tickers]
+broker-offsets=60
+
+[lagcheck]
+intervals=10
+expire-group=604800
+min-distance=1
+zookeeper-interval=60
+zk-group-refresh=300
+
+[httpserver.default]
+address=":8080"
