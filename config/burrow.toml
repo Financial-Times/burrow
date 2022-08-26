@@ -39,3 +39,7 @@ zk-group-refresh=300
 
 [httpserver.default]
 address=":8080"
+
+[evaluator.mystorage]
+class-name="caching"
+expire-cache=20
